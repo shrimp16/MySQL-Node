@@ -12,9 +12,22 @@ db.connect((err) => {
     console.log('Connected to MySQL');
 })
 
-let sql = 'CREATE TABLE persons(id int AUTO_INCREMENT, name VARCHAR(255), age int, PRIMARY KEY(id))'
+/*let sql = 'CREATE TABLE persons(id int AUTO_INCREMENT, name VARCHAR(255), age int, PRIMARY KEY(id))'
 
 db.query(sql, (err, result) => {
     if(err) throw err;
     console.log(result);
+})*/
+
+let person = {name: "Antonio", age: 50}
+let sql = 'INSERT INTO persons SET ?'
+
+db.query(sql, person, (err, result) => {
+    if(err) throw err;
+    console.log(result);
+})
+
+db.end((err) => {
+    if (err) throw err;
+    console.log("Connection ended");
 })
